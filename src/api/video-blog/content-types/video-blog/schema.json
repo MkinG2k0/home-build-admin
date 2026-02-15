@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "video_blogs",
+  "info": {
+    "singularName": "video-blog",
+    "pluralName": "video-blogs",
+    "displayName": "video blog"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "residential_complex": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::residential-complex.residential-complex",
+      "inversedBy": "video_blogs"
+    }
+  }
+}

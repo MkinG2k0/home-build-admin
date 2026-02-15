@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "residential_complexes",
+  "info": {
+    "singularName": "residential-complex",
+    "pluralName": "residential-complexes",
+    "displayName": "residential complex"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "info": {
+      "type": "blocks"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "swiper": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "video_blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::video-blog.video-blog",
+      "mappedBy": "residential_complex"
+    },
+    "plans": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::plan.plan",
+      "mappedBy": "residential_complex"
+    },
+    "complex_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::doc.doc",
+      "mappedBy": "residential_complex"
+    },
+    "address": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}

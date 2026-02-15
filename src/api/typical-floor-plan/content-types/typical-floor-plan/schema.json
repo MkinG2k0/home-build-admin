@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "plans",
+  "collectionName": "typical_floor_plans",
   "info": {
-    "singularName": "plan",
-    "pluralName": "plans",
-    "displayName": "plan"
+    "singularName": "typical-floor-plan",
+    "pluralName": "typical-floor-plans",
+    "displayName": "typical floor plan"
   },
   "options": {
     "draftAndPublish": true
@@ -28,13 +28,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::residential-complex.residential-complex",
-      "inversedBy": "plans"
-    },
-    "rooms": {
-      "type": "integer"
-    },
-    "m2": {
-      "type": "decimal"
+      "inversedBy": "typical_floor_plans"
     }
   }
 }

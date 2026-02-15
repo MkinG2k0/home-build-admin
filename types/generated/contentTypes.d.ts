@@ -577,10 +577,7 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    cover: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -635,6 +632,10 @@ export interface ApiResidentialComplexResidentialComplex
       true
     >;
     title: Schema.Attribute.String;
+    typical_floor_plans: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::typical-floor-plan.typical-floor-plan'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -642,6 +643,40 @@ export interface ApiResidentialComplexResidentialComplex
       'oneToMany',
       'api::video-blog.video-blog'
     >;
+  };
+}
+
+export interface ApiTypicalFloorPlanTypicalFloorPlan
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'typical_floor_plans';
+  info: {
+    displayName: 'typical floor plan';
+    pluralName: 'typical-floor-plans';
+    singularName: 'typical-floor-plan';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::typical-floor-plan.typical-floor-plan'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    residential_complex: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::residential-complex.residential-complex'
+    >;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1197,6 +1232,7 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::plan.plan': ApiPlanPlan;
       'api::residential-complex.residential-complex': ApiResidentialComplexResidentialComplex;
+      'api::typical-floor-plan.typical-floor-plan': ApiTypicalFloorPlanTypicalFloorPlan;
       'api::video-blog.video-blog': ApiVideoBlogVideoBlog;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

@@ -32,6 +32,9 @@
     },
     "rooms": {
       "type": "integer"
+    },
+    "m2": {
+      "type": "decimal"
     }
   }
 }

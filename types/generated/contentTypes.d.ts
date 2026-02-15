@@ -587,6 +587,7 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'> &
       Schema.Attribute.Private;
+    m2: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     residential_complex: Schema.Attribute.Relation<
       'manyToOne',
@@ -627,7 +628,7 @@ export interface ApiResidentialComplexResidentialComplex
     > &
       Schema.Attribute.Private;
     plans: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'>;
-    price: Schema.Attribute.Integer;
+    price: Schema.Attribute.BigInteger;
     publishedAt: Schema.Attribute.DateTime;
     swiper: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',

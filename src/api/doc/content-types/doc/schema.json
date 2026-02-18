@@ -14,7 +14,7 @@
     "title": {
       "type": "string"
     },
-    "cover": {
+    "img": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [

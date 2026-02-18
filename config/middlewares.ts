@@ -15,11 +15,7 @@ const config: Core.Config.Middlewares = [
 		config: {
 			enabled: true,
 			headers: '*',
-			origin: [
-				'http://localhost:5173',           // локальный Vite
-				'http://localhost:3000',
-				'https://home-build-ten.vercel.app', // ваш хост на Vercel
-			],
+			origin: '*',
 			credentials: true,
 		},
 	},

@@ -20,6 +20,7 @@ const config: Core.Config.Middlewares = [
 				'http://localhost:3000',
 				'https://home-build-ten.vercel.app', // ваш хост на Vercel
 			],
+			credentials: true,
 		},
 	},
 ]

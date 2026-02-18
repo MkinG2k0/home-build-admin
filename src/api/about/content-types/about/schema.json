@@ -12,12 +12,26 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "numbers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::number.number"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "description": {
       "type": "string"
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": ["shared.media", "shared.quote", "shared.rich-text", "shared.slider"]
+    "address": {
+      "type": "string"
     }
   }
 }

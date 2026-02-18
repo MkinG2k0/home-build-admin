@@ -479,17 +479,17 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
+    address: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
       Schema.Attribute.Private;
+    numbers: Schema.Attribute.Relation<'oneToMany', 'api::number.number'>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -529,6 +529,36 @@ export interface ApiDocDoc extends Struct.CollectionTypeSchema {
       'api::residential-complex.residential-complex'
     >;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEmployeeEmployee extends Struct.CollectionTypeSchema {
+  collectionName: 'employees';
+  info: {
+    displayName: 'Employee';
+    pluralName: 'employees';
+    singularName: 'employee';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fullName: Schema.Attribute.String;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::employee.employee'
+    > &
+      Schema.Attribute.Private;
+    post: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -621,6 +651,36 @@ export interface ApiMainSliderMainSlider extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     slides: Schema.Attribute.Relation<'oneToMany', 'api::slide.slide'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNumberNumber extends Struct.CollectionTypeSchema {
+  collectionName: 'numbers';
+  info: {
+    displayName: 'number';
+    pluralName: 'numbers';
+    singularName: 'number';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::number.number'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    phoneNumber: Schema.Attribute.String;
+    post: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -729,6 +789,58 @@ export interface ApiSlideSlide extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::slide.slide'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface ApiSocialNetworkSocialNetwork
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'social_networks';
+  info: {
+    displayName: 'Social Network';
+    pluralName: 'social-networks';
+    singularName: 'social-network';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::social-network.social-network'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    socialType: Schema.Attribute.Enumeration<
+      [
+        'facebook',
+        'twitter',
+        'instagram',
+        'linkedin',
+        'youtube',
+        'tiktok',
+        'telegram',
+        'whatsapp',
+        'vk',
+        'odnoklassniki',
+        'snapchat',
+        'pinterest',
+        'reddit',
+        'discord',
+        'viber',
+        'wechat',
+        'line',
+        'qq',
+      ]
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1323,12 +1435,15 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
       'api::doc.doc': ApiDocDoc;
+      'api::employee.employee': ApiEmployeeEmployee;
       'api::global.global': ApiGlobalGlobal;
       'api::headline.headline': ApiHeadlineHeadline;
       'api::main-slider.main-slider': ApiMainSliderMainSlider;
+      'api::number.number': ApiNumberNumber;
       'api::plan.plan': ApiPlanPlan;
       'api::residential-complex.residential-complex': ApiResidentialComplexResidentialComplex;
       'api::slide.slide': ApiSlideSlide;
+      'api::social-network.social-network': ApiSocialNetworkSocialNetwork;
       'api::typical-floor-plan.typical-floor-plan': ApiTypicalFloorPlanTypicalFloorPlan;
       'api::video-blog.video-blog': ApiVideoBlogVideoBlog;
       'plugin::content-releases.release': PluginContentReleasesRelease;

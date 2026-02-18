@@ -625,62 +625,6 @@ export interface ApiMainSliderMainSlider extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiMainVideoBlogMainVideoBlog extends Struct.SingleTypeSchema {
-  collectionName: 'main_video_blogs';
-  info: {
-    displayName: 'Main Vider Blog';
-    pluralName: 'main-video-blogs';
-    singularName: 'main-video-blog';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::main-video-blog.main-video-blog'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    video_blogs: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::video-blog.video-blog'
-    >;
-  };
-}
-
-export interface ApiNewNew extends Struct.SingleTypeSchema {
-  collectionName: 'news';
-  info: {
-    displayName: 'Main Headline';
-    pluralName: 'news';
-    singularName: 'new';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    headlines: Schema.Attribute.Relation<'oneToMany', 'api::headline.headline'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::new.new'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
   collectionName: 'plans';
   info: {
@@ -1374,8 +1318,6 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::headline.headline': ApiHeadlineHeadline;
       'api::main-slider.main-slider': ApiMainSliderMainSlider;
-      'api::main-video-blog.main-video-blog': ApiMainVideoBlogMainVideoBlog;
-      'api::new.new': ApiNewNew;
       'api::plan.plan': ApiPlanPlan;
       'api::residential-complex.residential-complex': ApiResidentialComplexResidentialComplex;
       'api::slide.slide': ApiSlideSlide;

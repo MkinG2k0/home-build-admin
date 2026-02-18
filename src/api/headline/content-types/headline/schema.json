@@ -20,7 +20,7 @@
     "content": {
       "type": "blocks"
     },
-    "cover": {
+    "img": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [

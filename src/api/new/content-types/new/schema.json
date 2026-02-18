@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "news",
+  "info": {
+    "singularName": "new",
+    "pluralName": "news",
+    "displayName": "Main Headline"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "headlines": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::headline.headline"
+    }
+  }
+}

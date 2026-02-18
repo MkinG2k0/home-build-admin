@@ -566,6 +566,121 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHeadlineHeadline extends Struct.CollectionTypeSchema {
+  collectionName: 'headlines';
+  info: {
+    displayName: 'headline';
+    pluralName: 'headlines';
+    singularName: 'headline';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::headline.headline'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMainSliderMainSlider extends Struct.SingleTypeSchema {
+  collectionName: 'main_sliders';
+  info: {
+    displayName: 'Main Slider';
+    pluralName: 'main-sliders';
+    singularName: 'main-slider';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::main-slider.main-slider'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slides: Schema.Attribute.Relation<'oneToMany', 'api::slide.slide'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMainVideoBlogMainVideoBlog extends Struct.SingleTypeSchema {
+  collectionName: 'main_video_blogs';
+  info: {
+    displayName: 'Main Vider Blog';
+    pluralName: 'main-video-blogs';
+    singularName: 'main-video-blog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::main-video-blog.main-video-blog'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    video_blogs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::video-blog.video-blog'
+    >;
+  };
+}
+
+export interface ApiNewNew extends Struct.SingleTypeSchema {
+  collectionName: 'news';
+  info: {
+    displayName: 'Main Headline';
+    pluralName: 'news';
+    singularName: 'new';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    headlines: Schema.Attribute.Relation<'oneToMany', 'api::headline.headline'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::new.new'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
   collectionName: 'plans';
   info: {
@@ -646,6 +761,32 @@ export interface ApiResidentialComplexResidentialComplex
   };
 }
 
+export interface ApiSlideSlide extends Struct.CollectionTypeSchema {
+  collectionName: 'slides';
+  info: {
+    displayName: 'Slide';
+    pluralName: 'slides';
+    singularName: 'slide';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::slide.slide'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface ApiTypicalFloorPlanTypicalFloorPlan
   extends Struct.CollectionTypeSchema {
   collectionName: 'typical_floor_plans';
@@ -691,7 +832,8 @@ export interface ApiVideoBlogVideoBlog extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -707,7 +849,7 @@ export interface ApiVideoBlogVideoBlog extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::residential-complex.residential-complex'
     >;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Private;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1230,8 +1372,13 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::doc.doc': ApiDocDoc;
       'api::global.global': ApiGlobalGlobal;
+      'api::headline.headline': ApiHeadlineHeadline;
+      'api::main-slider.main-slider': ApiMainSliderMainSlider;
+      'api::main-video-blog.main-video-blog': ApiMainVideoBlogMainVideoBlog;
+      'api::new.new': ApiNewNew;
       'api::plan.plan': ApiPlanPlan;
       'api::residential-complex.residential-complex': ApiResidentialComplexResidentialComplex;
+      'api::slide.slide': ApiSlideSlide;
       'api::typical-floor-plan.typical-floor-plan': ApiTypicalFloorPlanTypicalFloorPlan;
       'api::video-blog.video-blog': ApiVideoBlogVideoBlog;
       'plugin::content-releases.release': PluginContentReleasesRelease;

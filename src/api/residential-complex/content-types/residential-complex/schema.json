@@ -40,16 +40,16 @@
         "audios"
       ]
     },
+    "address": {
+      "type": "string"
+    },
+    "price": {
+      "type": "biginteger"
+    },
     "video_blogs": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::video-blog.video-blog",
-      "mappedBy": "residential_complex"
-    },
-    "plans": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::plan.plan",
       "mappedBy": "residential_complex"
     },
     "complex_documents": {
@@ -58,11 +58,11 @@
       "target": "api::doc.doc",
       "mappedBy": "residential_complex"
     },
-    "address": {
-      "type": "string"
-    },
-    "price": {
-      "type": "biginteger"
+    "plans": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::plan.plan",
+      "mappedBy": "residential_complex"
     },
     "typical_floor_plans": {
       "type": "relation",

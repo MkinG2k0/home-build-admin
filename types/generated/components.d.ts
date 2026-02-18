@@ -50,6 +50,20 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedSlide extends Struct.ComponentSchema {
+  collectionName: 'components_shared_slides';
+  info: {
+    displayName: 'Slide';
+    icon: 'grid';
+  };
+  attributes: {
+    placeholder: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
@@ -57,9 +71,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
     displayName: 'Slider';
     icon: 'address-book';
   };
-  attributes: {
-    files: Schema.Attribute.Media<'images', true>;
-  };
+  attributes: {};
 }
 
 declare module '@strapi/strapi' {
@@ -69,6 +81,7 @@ declare module '@strapi/strapi' {
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
+      'shared.slide': SharedSlide;
       'shared.slider': SharedSlider;
     }
   }

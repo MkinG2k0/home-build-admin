@@ -911,9 +911,7 @@ export interface ApiVideoBlogVideoBlog extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::residential-complex.residential-complex'
     >;
-    title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Private;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
